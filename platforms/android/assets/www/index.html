@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <script src="js/jquery-1.11.3.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("button").click(function () {
 //                var json = {'id': $("#id").val(), 'pw': $("#pw").val()};
-                var id = $("#id").val();
-                var pw = $("#pw").val();
+//                var id = $("#id").val();
+//                var pw = $("#pw").val();
+//                var json = {'id': $("#id").val(), 'pw': $("#pw").val()};
+                var json = new Object();
+
+//                json.id = $("#id").val();
+//                json.pw = $("#pw").val();
+                json = $('#form1').serialize();
+                alert(json);
+
                 $.ajax({
-                        url    : 'http://192.168.0.29:8080/guest/login',
-                        type   : 'post',
+                        url: 'http://192.168.55.135:8080/guest/login',
+                        type: 'post',
 //                        dataType: 'text',   // 응답 타입
-                        data   : {'id': JSON.stringify(id), 'pw': JSON.stringify(pw)},
+//                        data   : {'id': JSON.stringify(id), 'pw': JSON.stringify(pw)},
+                        data: json,
 //                        data   : json,
                         success: function (data) {
                             alert(data);
                             if (data == 'success') {
                                 $('.login').remove();
-                                $('.login_ok').html('<h1>로그인 성공</h1>');
+//                                $('.login_ok').html('<h1>로그인 성공</h1>');
+                                $('.login_ok').load('loginOK.html');
+
                                 window.localStorage.setItem("id", id);
 //                                키 가져오기
-//                                var value = window.localStorage.getItem("key");
+//                                var value = window.localStorage.getItem("id");
                             } else if (data == 'fail') {
                                 $('.login').remove();
                                 $('.login_ok').html('<h1>로그인 실패</h1>');
@@ -44,30 +56,30 @@
 </head>
 
 <body>
-    <div class="app">
-        <h1>LOGIN</h1>
-        <div class="login_ok"></div>
-        <div class="login">
-            <form action="http://192.168.0.29:8080/guest/login" method="post">
-                <label for="id">id</label>
-                <input type="text" name="id" id="id"/>
-                <br>
-                <label for="pw">pw</label>
-                <input type="text" name="pw" id="pw"/>
-                <button type="button">LOGIN</button>
-            </form>
-        </div>
-        <div class="change"></div>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-        </div>
+<div class="app">
+    <h1>LOGIN</h1>
+    <div class="login_ok"></div>
+    <div class="login">
+        <form id="form1" method="post">
+            <label for="id">id</label>
+            <input type="text" name="id" id="id"/>
+            <br>
+            <label for="pw">pw</label>
+            <input type="number" name="pw" id="pw"/>
+            <button type="button">LOGIN</button>
+        </form>
     </div>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
+    <div class="change"></div>
+    <div id="deviceready" class="blink">
+        <p class="event listening">Connecting to Device</p>
+        <p class="event received">Device is Ready</p>
+    </div>
+</div>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+    app.initialize();
+</script>
 </body>
 
 </html>
