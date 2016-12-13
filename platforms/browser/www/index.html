@@ -9,77 +9,76 @@
     <meta http-equiv="Content-Security-Policy"
           content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *"/>
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
     <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/jquery.toast.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("button").click(function () {
-//                var json = {'id': $("#id").val(), 'pw': $("#pw").val()};
-//                var id = $("#id").val();
-//                var pw = $("#pw").val();
-//                var json = {'id': $("#id").val(), 'pw': $("#pw").val()};
-                var json = new Object();
-
-//                json.id = $("#id").val();
-//                json.pw = $("#pw").val();
-                json = $('#form1').serialize();
-                alert(json);
-
-                $.ajax({
-                        url: 'http://192.168.55.135:8080/guest/login',
-                        type: 'post',
-//                        dataType: 'text',   // 응답 타입
-//                        data   : {'id': JSON.stringify(id), 'pw': JSON.stringify(pw)},
-                        data: json,
-//                        data   : json,
-                        success: function (data) {
-                            alert(data);
-                            if (data == 'success') {
-                                $('.login').remove();
-//                                $('.login_ok').html('<h1>로그인 성공</h1>');
-                                $('.login_ok').load('loginOK.html');
-
-                                window.localStorage.setItem("id", id);
-//                                키 가져오기
-//                                var value = window.localStorage.getItem("id");
-                            } else if (data == 'fail') {
-                                $('.login').remove();
-                                $('.login_ok').html('<h1>로그인 실패</h1>');
-                                window.localStorage.setItem("id", id);
-                            }
+        function buttonClick() {
+            var json = $('#form1').serialize();
+            alert(json);
+            $.ajax({
+                    url    : 'http://192.168.0.29:8080/guest/login',
+                    type   : 'post',
+                    data   : json,
+                    success: function (data) {
+//                        alert(data);
+                        if (data == 'fail') {
+                            $('#pw').val('');
+                            $('#id').val('');
+//                            $('#id').focus();
+                        } else {
+//                            alert(data);
+                            $('#form1').remove();
+                            $('.login').load('loginOK.html');
                         }
+                    },
+                    error  : function (request, status, error) {
+                        alert('code:' + request.status + '\n' + 'message:' + request.responseText + '\n' + 'error' + error);
                     }
-                )
-            })
-        })
+                }
+            )
+        }
+
+        //        })
     </script>
     <title>Hello World</title>
 </head>
 
 <body>
-<div class="app">
-    <h1>LOGIN</h1>
-    <div class="login_ok"></div>
-    <div class="login">
-        <form id="form1" method="post">
-            <label for="id">id</label>
-            <input type="text" name="id" id="id"/>
-            <br>
-            <label for="pw">pw</label>
-            <input type="number" name="pw" id="pw"/>
-            <button type="button">LOGIN</button>
-        </form>
-    </div>
-    <div class="change"></div>
-    <div id="deviceready" class="blink">
-        <p class="event listening">Connecting to Device</p>
-        <p class="event received">Device is Ready</p>
-    </div>
+<div class="login">
+    <form id="form1" method="post">
+        <div class="blink_Login"></div>
+        <div class="imgcontainer">
+            <img src="img/img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+            <label for="id"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="id" id="id" required>
+
+            <label for="pw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="pw" id="pw" required>
+
+            <button type="submit">Login</button>
+            <input type="checkbox" checked="checked"> Remember me
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
 </div>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript">
     app.initialize();
 </script>
+<script>
+    $('button').on("click", function () {
+        buttonClick();
+        return false;
+    });
+</script>
 </body>
-
 </html>
