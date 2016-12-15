@@ -1,0 +1,85 @@
+<div id="p1" data-role="page">
+    <script>
+        $(function () {
+            $('.success').on('click', function () {
+                $.mobile.changePage('ex02.html', {transition: 'slide'});
+            });
+        });
+    </script>
+    <div data-role="header" data-position="inline">
+        <h1> 거래명세표 </h1>
+        <a href="#popupMenu" data-icon="bars" data-rel="popup" data-role="button"
+           data-transition="slidedown">menu</a>
+        <div data-role="popup" id="popupMenu" data-theme="d">
+            <ul data-role="listview" data-inset="true" style="min-width:210px;">
+                <!--<li data-role="divider" data-theme="e">Choose an action</li>  data-inline="true"-->
+                <li><a href="#">명세명세</a></li>
+                <li><a href="#">상세명세</a></li>
+                <li><a href="#">우리명세</a></li>
+                <li><a href="#">너네명세</a></li>
+            </ul>
+        </div>
+        <a href="#" data-icon="back" data-rel="back">BACK</a>
+    </div>
+
+    <div data-role="content">
+        <div style="height: 40px; width: auto; background-color: #8a4182"></div>
+        <a data-role="button" class="menuBtn" href="#">명세 상세 보기
+            <div id="navigation-list">
+                <table class="table">
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                    </tr>
+                    <tr class="success">
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                    </tr>
+                    <tr class="danger">
+                        <td>Mary</td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                    </tr>
+                    <tr class="info">
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                    </tr>
+                </table>
+                <!--<ul>-->
+                <!--<li>가격</li>-->
+                <!--<li>바코드</li>-->
+                <!--<li>수량</li>-->
+                <!--<li>미수금</li>-->
+                <!--</ul>-->
+            </div>
+        </a>
+        <div style="height: 40px; width: auto; background-color: #8a4182"></div>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" data-icon="action">신규</a></li>
+                <li><a href="#" data-icon="edit">수정</a></li>
+                <!--<li><a href="#" data-icon="gear" class="ui-btn-active">삭제</a></li>-->
+                <li><a href="#" data-icon="delete">삭제</a></li>
+                <li><a href="#" data-icon="gear">기타</a></li>
+                <li><a href="#" data-icon="gear">하하</a></li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //        $(document).ready(function () {
+        // hide the menu when the page load
+        $("#navigation-list").hide();
+        // when .menuBtn is clicked, do this
+        $(".menuBtn").on("click", function () {
+            // open the menu with slide effect
+            $("#navigation-list").slideToggle(300);
+        });
+        //        });
+    </script>
+</div>
