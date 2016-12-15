@@ -4,6 +4,13 @@
             $('.success').on('click', function () {
                 $.mobile.changePage('ex02.html', {transition: 'slide'});
             });
+            $('.success').on('taphold', function () {
+                $('.message_for_user').slideDown(200);
+            });
+            $('.footer_new').on('taphold', function () {
+//            $('.footer_new').on('click', function () {
+                $('.footer-msg').slideToggle(200);
+            })
         });
     </script>
     <div data-role="header" data-position="inline">
@@ -37,6 +44,11 @@
                         <td>Doe</td>
                         <td>john@example.com</td>
                     </tr>
+                    <tr class="message_for_user" style="background-color: #3388cc">
+                        <td colspan="3">
+                            터치를 하시면 상세 페이지로 이동 합니다.
+                        </td>
+                    </tr>
                     <tr class="danger">
                         <td>Mary</td>
                         <td>Moe</td>
@@ -60,9 +72,12 @@
     </div>
 
     <div data-role="footer" data-position="fixed">
+        <div class="footer-msg"></div>
         <div data-role="navbar">
             <ul>
-                <li><a href="#" data-icon="action">신규</a></li>
+                <li class="footer_new">
+                    <a href="#" data-icon="action">신규</a>
+                </li>
                 <li><a href="#" data-icon="edit">수정</a></li>
                 <!--<li><a href="#" data-icon="gear" class="ui-btn-active">삭제</a></li>-->
                 <li><a href="#" data-icon="delete">삭제</a></li>
@@ -75,6 +90,8 @@
         //        $(document).ready(function () {
         // hide the menu when the page load
         $("#navigation-list").hide();
+        $('.message_for_user').hide();
+        $('.footer-msg').hide();
         // when .menuBtn is clicked, do this
         $(".menuBtn").on("click", function () {
             // open the menu with slide effect
