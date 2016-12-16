@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link href="css/jquery.mobile-1.4.5.css" rel="stylesheet" type="text/css"/>
+    
+     <!--user css start-->
+    <link rel="stylesheet" type="text/css" href="css/pro_css/sql_table.css" />
+     <!--user css end-->
+   
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    <script src="js/jquery-1.11.3.js"></script> 
+    
+    <!--user js(function) start-->
+    <script type="text/javascript" src="func/common_init.js"></script>
+    <script type="text/javascript" src="func/sql_fun/sql_ajax.js"></script>
+    <!--user js(function) end-->
+
+    <script src="js/jquery.mobile-1.4.5.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".lnk").click(function(){
+                var url=$(this).attr("href");
+                $.mobile.changePage(url,{
+                    transition:"slide",
+                    reverse:true
+                });
+            });
+
+        });
+    
+    
+    </script>
+</head>
+<body>
+  <div id="main" data-role="page">
+      <div data-role="header">
+          <h1>Header</h1>
+      </div>
+      <div data-role="content">
+          <a href="#p2" data-role="button">go sql</a>
+      </div>
+      <div data-role="footer" data-position="fixed">
+          <h1>footer</h1>
+      </div>
+  </div>  
+   <div id="p2" data-role="page">
+      <div data-role="header">
+          <h1>다이얼로그 팝업</h1>
+      </div>
+      <div data-role="content">
+          <div data-role="content">
+          <a href="oracList.html" data-role="button">oracle sql</a>
+          <a href="mysqlTest01.html" data-role="button">mysql</a>
+      </div>
+      </div>
+      <div data-role="footer" data-position="fixed">
+          <h1>footer</h1>
+      </div>
+  </div>         
+      
+</body>
+</html>

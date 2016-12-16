@@ -1,33 +1,34 @@
 <div id="menu" data-role="page">
-    <script> 
-        $(function(){
-            $('#pgExit').on("click", function(){
+    <script>
+        $(function () {
+            $('#pgExit').on("click", function () {
+                alert(window.localStorage.getItem('db_key'));
                 navigator.app.exitApp();
                 return false;
             });
         });
 
         /*$(document).on("pageinit","#ex01",function(e){*/
-        $(document).on( "pagebeforeshow","#menu",function(e,ui){
+        $(document).on("pagebeforeshow", "#menu", function (e, ui) {
             document.addEventListener("deviceready", onDeviceReady, false);
         });
-        
-        $(document).on( "pageremove","#menu",function(e){
+
+        $(document).on("pageremove", "#menu", function (e) {
             navigator.app.overrideBackbutton(false);
         });
-        
-       /* 
-        $(document).on("pagebeforeload",function(e,data){
-            alert("132345245245111");
-            document.addEventListener("deviceready", onDeviceReady, false);
-        });
-        */
+
+        /*
+         $(document).on("pagebeforeload",function(e,data){
+         alert("132345245245111");
+         document.addEventListener("deviceready", onDeviceReady, false);
+         });
+         */
         /*// Wait for device API libraries to load
-        //
-        function onLoad() {
-            document.addEventListener("deviceready", onDeviceReady, false);
-        }
-        */
+         //
+         function onLoad() {
+         document.addEventListener("deviceready", onDeviceReady, false);
+         }
+         */
 
         // device APIs are available
         //
@@ -42,43 +43,43 @@
         }
 
     </script>
-    
+
     <div data-role="header">
         <h1>♬ 작업메뉴들 ♬</h1>
     </div>
     <div data-role="content">
         <div data-role="controlgroup">
-            <a href="#" data-role="button" data-icon="plus" >상품-데이터받기</a>
-            <a href="#" data-role="button" data-icon="plus" >거래처-데이터받기</a>
+            <a href="#" data-role="button" data-icon="plus">상품-데이터받기</a>
+            <a href="#" data-role="button" data-icon="plus">거래처-데이터받기</a>
         </div>
-        
+
         <div data-role="controlgroup">
             <a href="#" data-role="button" data-icon="gear" data-iconpos="top">출고-집품작업</a>
             <a href="ex01.html" data-role="button" data-icon="gear" data-iconpos="top">명세표-발행작업</a>
         </div>
-        
+
         <div data-role="controlgroup">
             <!--<a href="#" data-role="button" data-icon="refresh" data-iconpos="top">프로그램종료</a>-->
             <!--<input id="pgExit" type="button" data-icon="delete" data-iconpos="top" value="프로그램종료"/>-->
-            <a id="pgExit" data-role="button" data-icon="delete" data-iconpos="top" >프로그램종료</a>
+            <a id="pgExit" data-role="button" data-icon="delete" data-iconpos="top">프로그램종료</a>
         </div>
-        
-      <!-- 
-       <div data-role="controlgroup">
-       <a href="#" data-role="button" data-icon="home" data-iconpos="right">btn4</a>
-       <a href="#" data-role="button" data-icon="grid" data-iconpos="right">btn5</a>
-       <a href="#" data-role="button" data-icon="back" data-iconpos="right">btn6</a>
-        </div>
-        
-       <div data-role="controlgroup" data-type="horizontal">
-       <a href="#" data-role="button" data-icon="home" data-iconpos="top">btn7</a>
-       <a href="#" data-role="button" data-icon="grid" data-iconpos="top">btn8</a>
-       <a href="#" data-role="button" data-icon="back" data-iconpos="top">btn9</a>
-       </div>
-       
-       <button>btn10</button>
-       <input type="button" value="btn11"/>
-        -->
+
+        <!--
+         <div data-role="controlgroup">
+         <a href="#" data-role="button" data-icon="home" data-iconpos="right">btn4</a>
+         <a href="#" data-role="button" data-icon="grid" data-iconpos="right">btn5</a>
+         <a href="#" data-role="button" data-icon="back" data-iconpos="right">btn6</a>
+          </div>
+
+         <div data-role="controlgroup" data-type="horizontal">
+         <a href="#" data-role="button" data-icon="home" data-iconpos="top">btn7</a>
+         <a href="#" data-role="button" data-icon="grid" data-iconpos="top">btn8</a>
+         <a href="#" data-role="button" data-icon="back" data-iconpos="top">btn9</a>
+         </div>
+
+         <button>btn10</button>
+         <input type="button" value="btn11"/>
+          -->
     </div>
     <div data-role="footer" data-position="fixed">
         <h1>▲ 원하시는 메뉴를 선택하시오!.</h1>

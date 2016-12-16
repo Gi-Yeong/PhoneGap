@@ -57,8 +57,9 @@
         function buttonLogin() {
             var rdata = $('#form1').serialize();
             $.ajax({
-                url    : 'http://192.168.0.29:8080/guest/login',
-//                url    : 'http://172.168.0.217:8080/guest/login',
+//                url    : 'http://192.168.0.29:8080/guest/login',
+//                url    : 'http://203.236.209.200:8080/login/memberlogin',
+                url    : 'http://192.168.0.29:8080/login/memberlogin',
                 type   : 'post',
                 data   : rdata,
                 success: function (data) {
@@ -75,7 +76,7 @@
                          뒤로가지 동작하지 않음!...
                          $.mobile.changePage("menu.html", {transition: "flip", changeHash: false });
                          */
-
+                        alert(data);
                         $.mobile.changePage("menu.html", {transition: "flip"});
                         return false;
                     }
