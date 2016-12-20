@@ -1,0 +1,192 @@
+<div data-role="page">
+<script>
+    $(function(){
+        
+        $('#openDB').on("click", function(){
+            openDataBase();
+            return false;
+        });
+
+        $('#createTable').on("click", function(){
+            alert("createTable Btn...");
+            CreateBusinessTable();
+            return false;
+        });
+
+        $('#insertOne').on("click", function(){
+            alert("Insert Btn...");
+            InsertBusinessData();
+            return false;
+        });
+
+        $('#updateOne').on("click", function(){
+            UpdateBusinssTable();
+            return false;
+        });
+
+        $('#deleteOne').on("click", function(){
+            DeleteBusinessTable();
+            return false;
+        });
+
+        $('#selectOne').on("click", function(){
+            GetBusinessData();
+            return false;
+        });
+
+        // 데이타베이스 오픈
+        function openDataBase() {
+            alert("1111---111");
+            //Accessing with HTML5 local database
+            myDB = window.openDatabase(databaseName, databaseVersion , databaseDisplayName, databaseSize);
+            alert("1111---222");
+            //Using SQLite plugin
+            myDB = window.sqlitePlugin.openDatabase({name : databaseName});
+            alert("1111---333");
+        };
+
+        // 테이블생성하기.. <없을때만!..>
+        function CreateBusinessTable() {
+            myDB.transaction(function(transaction) {
+                transaction.executeSql('CREATE ' +
+                           'TABLE IF NOT EXISTS ' +
+                           'Business_Table (id integer primary key, business_id integer, business_name text)', [],
+                    function(tx, result) {
+                        /*console.log("Business table created successfully.");*/
+                        alert("Business table created successfully.");
+                    }, 
+                    function(error) {
+                          /*console.log("Error occurred while creating the table.");*/
+                        alert("Error occurred while creating the table.");
+                    }
+                );
+            });
+        };
+
+        // 레코드 추가작업
+        function InsertBusinessData(){
+            myDB.transaction(function(transaction) {
+                // Define insert query
+                var executeQuery = "INSERT INTO Business_Table (business_id, business_name) VALUES(?,?)";
+                
+                
+                //alert("Helper.log(executeQuery) ---> 전전전..");
+                //Helper.log(executeQuery);     
+                //alert("Helper.log(executeQuery) ---> After..");
+                
+                transaction.executeSql(executeQuery, ['7777', 'kkkkkkk']
+                    , function(tx, result) {   // On success
+                         /*console.log('Business data inserted successfully.');*/
+                        alert("Business data inserted successfully.");
+                    },
+                                       
+                    function(error){     // On error                               
+                         /*console.log('Error occurred while inserting business data.'); */
+                        alert("Error occurred while inserting business data.");
+                    }
+                );
+            });
+        };
+
+        // 검출작업..
+        function GetBusinessData() {
+            myDB.transaction(function(transaction) {
+                transaction.executeSql("SELECT business_id, business_name FROM Business_Table WHERE business_id = ?"
+                    , ['7777']
+                    , function(tx, result) {
+                        var dataLength = result.rows.length;
+                        if(dataLength > 0){
+                            var businessName = result.rows.item(0).business_name;
+                            alert("이름은 := " + businessName);
+                        }else{
+                            alert("No business found having this business id."); 
+                        }
+                      }
+                    , function(error) {
+                        alert("Error occurred while getting the data.");
+                    }
+                );
+            }); 
+        };
+
+        // 레코드 수정작업..
+        function UpdateBusinssTable(){
+            myDB.transaction(function(
+                transaction) {
+                // Define update query
+                var executeQuery = "UPDATE " +
+                                   "Business_Table " +
+                                   "SET business_name = ?  WHERE  business_id =?"; 
+                    transaction.executeSql(executeQuery, ['Mindfire Solutions', '1234']
+                        , function(tx, result) {   // On success
+                         console.log('Business updated successfully.');
+                    },
+                    function(error){     // On error                               
+                        console.log('Error occurred while updating the business.'); 
+                    }
+                );
+           });
+        };
+
+        // 레코드 삭제..
+        function DeleteBusinessTable(){
+            myDB.transaction(
+                function(transaction) {
+                // Define delete query
+                var executeQuery = "DELETE FROM Business_Table";
+                transaction.executeSql(executeQuery, []
+                    , function(tx, result) {   // On success
+                         console.log('All business data deleted successfully.');
+                    },
+                    function(error){     // On error                               
+                         console.log('Error occurred while deleting the business data.'); 
+                    }
+                );
+            });
+        };
+
+        // 테이블삭제..
+        function DropBusinessTable(){
+            myDB.transaction(
+                function(transaction) {
+                // Define delete query
+                var executeQuery = "DROP TABLE  IF EXISTS Business_Table";
+                transaction.executeSql(executeQuery, []
+                    , function(tx, result) {   // On success
+                         console.log('Table deleted successfully.');
+                    },
+                    function(error){     // On error                               
+                         console.log('Error occurred while droping the table.'); 
+                    }
+                );
+            });
+        };
+    });
+</script>
+    
+    <div data-role="header" data-position="inline">
+        <a href="#" data-icon="back" data-rel="back">BACK</a>
+        <h1> ☎ 데이터받기 ☎ </h1>
+        <a href="#" data-icon="back" data-rel="back" class="ui-btn-right">BACK</a>
+    </div>
+    
+    <div data-role="content">
+       <a id="callData" data-role="button" data-icon="plus" data-iconpos="top" class="ui-btn-active">데이터지금받기</a>
+    </div>
+    
+    <div data-role="controlgroup">
+        <a id="openDB" href="#" data-role="button" data-icon="gear">0)DB생성하기!...</a>
+        <a id="createTable" href="#" data-role="button" data-icon="gear">1)테이블생성!...</a>
+        <a id="insertOne" href="#" data-role="button" data-icon="gear">2)레코드추가!...</a>
+        <a id="updateOne" href="#" data-role="button" data-icon="gear">3)레코드수정!...</a>
+        <a id="deleteOne" href="#" data-role="button" data-icon="gear">4)레코드삭제!...</a>
+        <a id="selectOne" href="#" data-role="button" data-icon="gear">5)하나보기!...</a>
+        <a id="selectAll" href="#" data-role="button" data-icon="gear">6)리스트보기!...</a>
+    </div>
+    
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <h1> ☏ 작업을 선택하세요!.</h1>
+        </div>
+    </div>
+</div>

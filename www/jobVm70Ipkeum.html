@@ -1,0 +1,116 @@
+<div id="jobVm70Ipkeum" data-role="page">
+	
+    <div data-role="header" >
+        <a href="#" data-icon="back" data-rel="back">BACK</a>
+        <h1>♬ 금액수정작업!..</h1>
+        <a href="#" data-icon="back" data-rel="back" class="ui-btn-right">BACK</a>
+    </div>
+    
+    <div data-role="content" >
+		<div data-role="fieldcontain"> 
+			<label for="name">Text Input:</label> 
+			<input type="text" name="name" id="name" value="" /> 
+		</div> 
+ 
+			<form action="#">
+
+				<div data-role="fieldcontain"> 
+
+					<label for="gender">성별</label>
+
+					<select name="gender" id="gender" data-role="slider">
+
+						<option value="남자">남자</option>
+
+						<option value="여자">여자</option>
+
+					</select>
+
+				</div>
+
+				<div data-role="fieldcontain">
+
+				<!-- data-type="horizontal" : 배치방향 가로 "vertical" : 배치방향 세로  -->
+
+					<fieldset data-role="controlgroup" data-type="horizontal">
+
+						<legend>주제별문의</legend>
+
+						<input type="checkbox" name="type1" id="type1"/>
+
+						<label for="type1">상품</label>
+
+						<input type="checkbox" name="type2" id="type2"/>
+
+						<label for="type2">배송관련</label>
+
+						<input type="checkbox" name="type3" id="type3"/>
+
+						<label for="type3">환불</label>						
+
+						<input type="checkbox" name="type4" id="type4"/>
+
+						<label for="type4">기타</label>
+
+					</fieldset>
+
+				</div>
+
+				<div data-role="fieldcontain">
+
+						<fieldset data-role="controlgroup">
+
+							<legend>직업</legend>
+
+							<input type="radio" name="job" id="job1"/>
+
+							<label for="job1">회사원</label>
+
+							<input type="radio" name="job" id="job2"/>
+
+							<label for="job2">공무원</label>
+
+							<input type="radio" name="job" id="job3"/>
+
+							<label for="job3">전문직</label>
+
+							<input type="radio" name="job" id="job4"/>
+
+							<label for="job4">개발자</label>																		
+
+						</fieldset>
+
+				</div>
+
+				<div data-role="fieldcontain">
+
+				 	<label for="textarea">문의 내용 </label> 
+
+				 	<textarea rows="8" cols="50" id="textarea"></textarea>
+
+				</div>
+
+				<div style="text-align:center">
+
+				<!--  data-inline: true = 인라인 요소로 만들어줌 -->
+
+					<input type="reset" value="취소" data-icon="delete" data-inline="true"/>
+
+					<input type="submit" value="전송"  data-icon="arrow-r" data-inline="true" />
+
+				</div>
+
+			</form>
+
+	</div>
+		   
+    
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+			<ul>
+               <li><a href="#" id="btnVm70Edit" data-icon="edit" data-rel="back">수정완료</a></li>
+               <li><a href="#" data-icon="back" data-rel="back" class="ui-btn-active">작업복귀</a></li>
+           </ul>
+        </div>
+    </div>
+</div>

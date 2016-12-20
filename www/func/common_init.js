@@ -4,18 +4,71 @@ $(document).on("mobileinit", function () {
     //$.mobile.loadingMessage="hello";
     console.log("mobileinit");
 
-
-    /*  $(document).on( "pageload",function(e,data){
-     console.log("pageload");
-     console.log(data.url);
-     console.log("-----------------");
-     });*/
-
-    // 김기영 JS
-    $(document).on("pageshow", "#menu", function (e, ui) {
-       menuexit();
+    /* 김대필 html에서 사용하는 것들 */
+    $(document).on("pageinit", "#dataBaseJob", function (e, ui) {
+        startLocalDB(function (retMsg) {
+            if (retMsg != true) {
+                alert("<연락바랍니다!...>");
+            }
+            ;
+        });
     });
 
+
+    // 처음 또는 거래명세표 작업에서 나올때는 배열값을 초기화 해준다.
+    $(document).on("pageinit", "#jobMenu", function (e, ui) {
+        menuexit();
+        myVm70Array = [];
+        myVm70Index = 0;
+
+        myJobCheck = "go";  // 작업메뉴화면에 언제오던..
+    });
+
+    $(document).on("pageinit", "#jobVm70", function (e, ui) {
+        //alert("myVm70Array.length: " + myVm70Array.length);
+
+        // 맨처음이 아닐수도 있지만 레코드가 없으면 무조건 처음으로 간주한다.
+        // 시간도 걸리지 않겠지...
+
+        if (myVm70Array.length <= 0) {
+            startLocalDB(function (retMsg) {
+                if (retMsg == true) {
+                    selectVm70All("A", function (retMsg) {
+                        if (retMsg == true) {
+                            myJobCheck == "no";
+                            refreshVm70();
+                        } else {
+                            alert("연락바랍니다!..");
+                        }
+                        ;
+                    });
+                } else {
+                    alert("<연락바랍니다!..>");
+                }
+                ;
+            });
+        } else {
+            //
+            // 레코드 메모리 배열에 갯수가 있으면 다시 뿌려주기만 한다.
+            refreshVm70();
+        }
+        ;
+    });
+
+    $(document).on("pageinit", "#jobVm70Ipkeum", function (e, ui) {
+        startJobVm70Ipkeum();
+    });
+
+    $(document).on("pageinit", "#jobVm70Del", function (e, ui) {
+        startJobVm70Del();
+    });
+    /* 김대필 html에서 사용하는 것들 */
+
+    // 김기영 JS
+    // $(document).on("pageshow", "#jobMenu", function (e, ui) {
+    //     alert(window.localStorage.getItem('db_key'));
+    // });
+    // 김기영 JS
 
     $(document).on("pageshow", "#mysql01", function (e, ui) {
         alert("pageshow");

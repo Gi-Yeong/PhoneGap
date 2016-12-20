@@ -22,7 +22,7 @@ function ajaxLogin() {
                     // 현재는 키가 하나임
                     window.localStorage.setItem("db_key", alist[i].db_key_from_Oracle);
                 }//for
-                $.mobile.changePage("menu.html", {transition: "flip"});
+                $.mobile.changePage("jobMenu.html", {transition: "flip"});
                 return false;
             }
         },

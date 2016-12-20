@@ -1,0 +1,102 @@
+<div id="dataBaseJob" data-role="page">
+<script>
+	$('#insertOne').on("click", function(){
+		var rInvoiceNo = 12;
+		var vm70Info = new Object();
+		
+		vm70Info.j_number = "bbbb" + rInvoiceNo;
+						vm70Info.j_code   = "a001";
+						vm70Info.j_title  = "무화가그늘위에";
+						vm70Info.j_schk   = "N";
+						vm70Info.j_date   = "2016-12-20";
+						vm70Info.j_time   = "19:20:25";
+						vm70Info.j_memo1  = "한번 성공 합시다!..";
+						vm70Info.j_no     = 1;
+						vm70Info.j_gunsu  = 1;
+						vm70Info.j_money1 = 500000;
+						vm70Info.j_money2 = 50000;
+						vm70Info.j_money3 = 550000;
+						vm70Info.j_money4 = 500000;
+						vm70Info.j_money5 = 0;
+						vm70Info.j_money6 = 50000;
+		
+		insertOneVm70(vm70Info, function(retMsg) {
+			if (retMsg == true) {
+				alert("하나등록 성공");
+			} else {
+				alert("<연락바랍니다!..>");
+			};
+		});
+		return false;
+	});
+
+	$('#updateOne').on("click", function(){
+		UpdateBusinssTable();
+		return false;
+	});
+
+	$('#deleteOne').on("click", function(){
+		DeleteBusinessTable();
+		return false;
+	});
+
+	$('#selectOne').on("click", function(){
+		var pivNumber = "";
+		selectVm70One(pivNumber);
+		return false;
+	});
+	
+	$('#dropJm20').on("click", function(){
+		dropTableJm20();
+		return false;
+	});
+	
+	$('#dropJm40').on("click", function(){
+		dropTableJm40();
+		return false;
+	});
+	
+	$('#dropVm70').on("click", function(){
+		dropTableVm70();
+		return false;
+	});
+	
+	$('#dropVm71').on("click", function(){
+		dropTableVm71();
+		return false;
+	});
+	
+	
+</script>
+	
+    <div data-role="header" data-position="inline">
+        <a href="#" data-icon="back" data-rel="back">BACK</a>
+        <h1> ☎ CRUD-TEST.. ☎ </h1>
+		<a href="#" data-icon="back" data-rel="back" class="ui-btn-right">BACK</a>
+    </div>
+    
+    <div data-role="content">
+       <a id="callJm20" data-role="button" data-icon="plus" class="ui-btn-active">상품마스타 받기</a>
+       <a id="callJm40" data-role="button" data-icon="plus" >거래처마스타 받기</a>
+    </div>
+    
+    <div data-role="controlgroup">
+        <a id="insertOne" href="#" data-role="button" data-icon="gear">1)레코드추가(vm70)!...</a>
+        <a id="updateOne" href="#" data-role="button" data-icon="gear">2)레코드수정!...</a>
+        <a id="deleteOne" href="#" data-role="button" data-icon="gear">3)레코드삭제!...</a>
+        <a id="selectOne" href="#" data-role="button" data-icon="gear">4)하나보기!...</a>
+    </div>
+    
+	<div data-role="content">
+       <a id="dropJm20" data-role="button" data-icon="delete" >상품마스타 지우기</a>
+       <a id="dropJm40" data-role="button" data-icon="delete" >거래처마스타 지우기</a>
+       <a id="dropVm70" data-role="button" data-icon="delete" >명세표마스타 지우기</a>
+       <a id="dropVm71" data-role="button" data-icon="delete" >명세표현황화일 지우기</a>
+    </div>
+	
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+			<h1> ♬ 작업을 선택하세요!.</h1>
+        </div>
+    </div>
+</div>
