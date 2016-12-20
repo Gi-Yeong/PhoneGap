@@ -15,6 +15,7 @@
     <!-- 김기영 Start -->
     <link rel="stylesheet" type="text/css" href="css/login.css"/>
     <!-- 김대필 Start-->
+    <link rel="stylesheet" type="text/css" href="css/kingnero/line1.css">
     <!--user css end-->
 
     <script type="text/javascript" src="cordova.js"></script>
@@ -29,9 +30,13 @@
     <!-- 마경민 Start-->
     <script type="text/javascript" src="func/sql_fun/sql_ajax.js"></script>
     <!-- 김기영 Start-->
-    <script type="text/javascript" src="js/Login.js"></script>
+    <!--<script type="text/javascript" src="js/Login.js"></script> ajaxLogin으로 대체-->
     <script type="text/javascript" src="js/menu.js"></script>
     <!-- 김대필 Start-->
+    <script type="text/javascript" src="func/kingnero/indexJs.js"></script>
+    <script type="text/javascript" src="func/kingnero/localDB70.js"></script>
+    <script type="text/javascript" src="func/kingnero/index_database/index_database.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/SQLitePlugin.js"></script>
     <!--user js(function) end-->
 
     <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -51,71 +56,18 @@
 
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
 
-    <!--<script type="text/javascript">-->
-        <!--function buttonLogin() {-->
-            <!--var rdata = $('#form1').serialize();-->
-            <!--$.ajax({-->
-<!--//                url    : 'http://192.168.0.29:8080/guest/login',-->
-<!--//                url    : 'http://203.236.209.200:8080/login/memberlogin',-->
-                <!--url    : 'http://192.168.0.29:8080/login/memberlogin',-->
-                <!--type   : 'post',-->
-                <!--data   : rdata,-->
-                <!--success: function (data) {-->
-                    <!--if (data == 'fail') {-->
-                        <!--$('#pw').val('');-->
-                        <!--$('#id').val('');-->
-                        <!--$('#id').focus();-->
-                        <!--return false;-->
-                    <!--} else {-->
-                        <!--window.localStorage.setItem("db_key", data);-->
-                        <!--$.mobile.changePage("menu.html", {transition: "flip"});-->
-                        <!--return false;-->
-                    <!--}-->
-                <!--},-->
-                <!--error  : function (request, status, error) {-->
-                    <!--alert('code:' + request.status + '\n' + 'message:' + request.responseText + '\n' + 'error' + error);-->
-                <!--}-->
-            <!--});-->
-        <!--}-->
-    <!--</script>-->
     <title>명세명세</title>
 </head>
 
-
-<script>
-    $(document).ready(function () {
-        $('#btnLogin').on("click", function () {
-            buttonLogin();
-            /*var tf = buttonLogin();
-             alert("tf := " + tf);
-             if (tf) {
-             alert("111111111");
-             $.mobile.changePage( "#page1", { transition: "flip", changeHash: false });
-             $.mobile.changePage( "ex01.html", {transition: "flip", changeHash: false });
-             }*/
-            return false;
-        });
-
-        $('#btnExit').on("click", function () {
-            alert("exit!!!!!!!");
-        });
-
-
-    });
-</script>
-
-<body>
+<body onload="onBodyLoad()">
 <div id="main" data-role="page">
     <div data-role="header">
-        <h1>반갑습니다</h1>
+        <h1>♬ 반갑습니다 ♬</h1>
     </div>
     <div data-role="content">
-        <!--<a href="ex01.html" data-role="button">ex01</a>
-        <a href="#p2" data-role="button">go page2</a>-->
         <div class="imgcontainer">
             <img src="img/img_avatar2.png" alt="Avatar" class="avatar">
         </div>
-
 
         <form id="form1">
             <div class="container">
@@ -124,61 +76,18 @@
 
                 <label for="pw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="pw" id="pw" required>
-                <a id="btnLogin" data-role="button" data-transition="fade">Login</a>
-                <!-- 
-                <input type="checkbox" checked="checked"> Remember me
-                -->
+
             </div>
         </form>
 
         <div class="container" style="background-color:#f1f1f1">
+            <button id="btnLogin" type="button" data-transition="fade">Login</button>
             <button id="btnExit" type="button" class="cancelbtn">Cancel</button>
-            <!--
-            <span class="psw">Forgot <a href="#">password?</a></span>
-            -->
         </div>
 
     </div>
     <div data-role="footer" data-position="fixed">
-        <h1>로그인을 하세요!!!</h1>
-    </div>
-</div>
-
-<div id="p2" data-role="page">
-    <div data-role="header">
-        <h1>버튼효과</h1>
-    </div>
-    <div data-role="content">
-        <a href="#" data-role="button" data-rel="back">back</a>
-        <a href="#p3" data-role="button">go page3</a>
-        <a href="btn01.html" data-role="button" data-transition="fade">btn01</a>
-        <a href="btn02.html" data-role="button" data-transition="slide" data-direction="reverse">btn02</a>
-        <a href="btn03.html" data-role="button" data-transition="slidedown" data-direction="reverse">btn03</a>
-        <a href="list01.html" data-role="button" data-transition="pop">list01</a>
-        <a href="list02.html" data-role="button" data-transition="flip">list02</a>
-        <a href="list03.html" data-role="button">list03</a>
-        <a href="list04.html" data-role="button">list04</a>
-        <a href="grid.html" data-role="button">grid</a>
-        <a href="colla.html" data-role="button">collapsible</a>
-        <a href="form.html" data-role="button">form</a>
-        <a href="link.html" data-role="button">link</a>
-        <a href="link2.html" class="lnk" data-role="button">link2</a>
-    </div>
-    <div data-role="footer" data-position="fixed">
-        <h1>footer</h1>
-    </div>
-</div>
-
-<div id="p3" data-role="page">
-    <div data-role="header">
-        <h1>다이얼로그 팝업</h1>
-    </div>
-    <div data-role="content">
-        <a href="#" data-role="button" data-rel="back">back</a>
-        <a href="popup.html" data-role="button" data-rel="dialog">up</a>
-    </div>
-    <div data-role="footer" data-position="fixed">
-        <h1>footer</h1>
+        <h1>♬ 로그인을 하세요!.</h1>
     </div>
 </div>
 
