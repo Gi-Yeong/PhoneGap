@@ -14,11 +14,12 @@ function buttonLogin() {
                 $('#pw').val('');
                 $('#id').val('');
                 $('#id').focus();
-                return false;
+                return false; // return false를 해줘야 focus가 정상적으로 작동한다
             } else {
                 var alist = data.result_list;
                 /*  alert(alist);*/
                 for (var i = 0; i < alist.length; i++) {
+                    // 현재는 키가 하나임
                     window.localStorage.setItem("db_key", alist[i].db_key_from_Oracle);
                 }//for
                 $.mobile.changePage("menu.html", {transition: "flip"});

@@ -16,7 +16,8 @@ $(document).on("pagebeforeshow", "#menu", function (e, ui) {
 });
 
 $(document).on("pageremove", "#menu", function (e) {
-    navigator.app.overrideBackbutton(false);
+    // 12월 20일 크롬 오류로 삭제
+    // navigator.app.overrideBackbutton(false);
 });
 
 /*
