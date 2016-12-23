@@ -10,7 +10,6 @@ $(document).on("mobileinit", function () {
             if (retMsg != true) {
                 alert("<연락바랍니다!...>");
             }
-            ;
         });
     });
 
@@ -25,11 +24,11 @@ $(document).on("mobileinit", function () {
     });
 
     $(document).on("pageinit", "#jobVm70", function (e, ui) {
+        jobVM_btn01_new();
         //alert("myVm70Array.length: " + myVm70Array.length);
 
         // 맨처음이 아닐수도 있지만 레코드가 없으면 무조건 처음으로 간주한다.
         // 시간도 걸리지 않겠지...
-
         if (myVm70Array.length <= 0) {
             startLocalDB(function (retMsg) {
                 if (retMsg == true) {
@@ -45,14 +44,12 @@ $(document).on("mobileinit", function () {
                 } else {
                     alert("<연락바랍니다!..>");
                 }
-                ;
             });
         } else {
             //
             // 레코드 메모리 배열에 갯수가 있으면 다시 뿌려주기만 한다.
             refreshVm70();
         }
-        ;
     });
 
     $(document).on("pageinit", "#jobVm70Ipkeum", function (e, ui) {
@@ -65,9 +62,6 @@ $(document).on("mobileinit", function () {
     /* 김대필 html에서 사용하는 것들 */
 
     // 김기영 JS
-    // $(document).on("pageshow", "#jobMenu", function (e, ui) {
-    //     alert(window.localStorage.getItem('db_key'));
-    // });
     // 김기영 JS
 
     $(document).on("pageshow", "#mysql01", function (e, ui) {

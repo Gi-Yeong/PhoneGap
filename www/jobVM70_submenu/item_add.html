@@ -1,0 +1,25 @@
+<div data-role="page" style="background-color: #00caf2">
+    <div data-role="header" data-position="fixed">
+        <h1>♬ 신규 품목 입력 ♬</h1>
+        <a href="#" data-icon="back" data-rel="back" class="ui-btn-right">BACK</a>
+    </div>
+
+    <form action="" method="post">
+        <label for="item">품목</label>
+        <input type="text" name="item" placeholder="품목" id="item">
+        <div data-role="fieldcontain">
+            <label for="count">수량</label>
+            <input type="range" min="1" max="100" value="30" id="count"/>
+        </div>
+        <div data-role="fieldcontain">
+            <label for="count_out">출고</label>
+            <input type="range" min="1" max="100" value="30" id="count_out"/>
+        </div>
+        <a href="#" data-role="button" data-transition="pop" data-direction="reverse" data-rel="back"
+           id="add_item">추가</a>
+    </form>
+
+    <div data-role="footer" data-position="fixed">
+        <h1> 수량 체크를 다시 한번 확인 하세요</h1>
+    </div>
+</div>

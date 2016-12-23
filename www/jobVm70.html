@@ -7,7 +7,7 @@
         });
 
     </script>-->
-    <div data-role="header" data-position="inline">
+    <div data-role="header" data-position="fixed">
         <h1>♬ 거래명세표 ♬</h1>
         <a href="#popupMenu" data-icon="bars" data-rel="popup" data-role="button"
            data-transition="slidedown">menu</a>
@@ -46,17 +46,22 @@
     </div>
 
     <div data-role="footer" data-position="fixed">
-        <div class="footer-msg">신규 데이터를 추가 합니다</div>
         <div data-role="navbar">
+            <div id="footer-msg_new" style="text-align: center">신규 데이터를 추가 합니다</div>
+            <div id="footer-msg_edit" style="text-align: center">선택된 데이터를 수정 합니다</div>
+            <div id="footer-msg_del" style="text-align: center">선택된 데이터를 삭제 합니다</div>
+            <div id="footer-msg_sum" style="text-align: center">선택된 데이터의 합계를 제공합니다</div>
+            <div id="footer-msg_sel" style="text-align: center">선택된 데이터를 선별 합니다</div>
             <ul>
-                <li class="footer_new">
-                    <a href="#" data-icon="action">신규</a>
+                <li id="footer_new">
+                    <!-- made by Gi-Yeong, 신규 입력 페이지-->
+                    <a href="jobVM70_submenu/insert.html" data-icon="action">신규</a>
                 </li>
-                <li id="edit"><a href="#" data-icon="edit">내역</a></li>
+                <li id="footer_edit"><a href="#" data-icon="edit">내역</a></li>
                 <!--<li><a href="#" data-icon="gear" class="ui-btn-active">삭제</a></li>-->
                 <li id="btnDelForm"><a href="#" data-transition="turn" data-rel="dialog" data-icon="delete">삭제</a></li>
-                <li><a href="#" data-icon="gear">합계</a></li>
-                <li id=""><a href="#" data-icon="recycle">선별</a></li>
+                <li id="footer_sum"><a href="#" data-icon="gear">합계</a></li>
+                <li id="footer_select"><a href="#" data-icon="recycle">선별</a></li>
             </ul>
         </div>
     </div>

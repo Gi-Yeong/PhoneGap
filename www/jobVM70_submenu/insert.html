@@ -1,0 +1,67 @@
+<div id="vm70_insert" data-role="page">
+    <script>
+        $('#test111').on('click', function () {
+//        $('#dropdownMenu1').on('click', function () {
+            alert('클릭이 되면, li 요소를 추가함');
+            $('.dropdown-menu').append('<li role="presentation"><a role="menuitem" tabindex="-1" href="#">우리수산</a></li>');
+        });
+
+//        item_add 페이지에서 추가 를 누르면, append에 내용이 DB에 저장되고, insert.html에서는 해당 DB의 내용을 다시 가져와서 뿌려준다
+        $('#add_item').on('click', function () {
+            alert('aaaaa');
+            $('.item_list').append('<li><a href="#"><img src="http://cfile205.uf.daum.net/image/2230B14E541B8B0430D8F5"/><h1>도라에몽</h1><span class="ui-li-count">100</span><p>자매품 : 도라미</p><p>로봇류</p></a><p class="ui-li-aside"><strong>1000억</strong></p></li>');
+        })
+    </script>
+    <div data-role="header" data-position="fixed">
+        <h1>♬ 신규 입력 ♬</h1>
+        <a href="#" data-icon="back" data-rel="back" class="ui-btn-right">BACK</a>
+    </div>
+
+    <div id="vm70_insert_body" data-role="content">
+        <button id="test111">test</button>
+        <form action="" method="post">
+            <div class="dropdown" data-position="fixed">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-expanded="true">
+                    상호 선택
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">우리수산</a></li>
+                    <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">너네수산</a></li>-->
+                    <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">앞집수산</a></li>-->
+                    <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">거기수산</a></li>-->
+                </ul>
+            </div>
+            <label>바코드</label>
+            <input type="text" name="item" placeholder="바코드">
+            <ul data-role="listview" data-inset="true" class="item_list">
+                <li>
+                    <a href="#">
+                        <img src="http://cfile205.uf.daum.net/image/2230B14E541B8B0430D8F5"/>
+                        <h1>도라에몽</h1>
+                        <span class="ui-li-count">100</span>
+                        <p>자매품 : 도라미</p>
+                        <p>로봇류</p>
+                    </a>
+                    <p class="ui-li-aside"><strong>1000억</strong></p>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li>
+                    <a href="item_add.html" data-role="button" data-rel="dialog">추가</a>
+                </li>
+                <li id="footer_new">
+                    <!-- made by Gi-Yeong, 신규 입력 페이지-->
+                    <!-- 완료를 누르면, 로컬 디비에 저장-->
+                    <a href="#" >완료</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
