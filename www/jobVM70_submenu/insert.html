@@ -7,9 +7,9 @@
 
                 $("#addTR").click(function () {
                     var row = "<tr>";
-                    row += "<td><input type='text' placeholder='품목'/></td>";
-                    row += "<td><input type='text' placeholder='단가'/></td>";
-                    row += "<td><input type='text' placeholder='수량'/></td>";
+                    row += "<td><input type='text' name='item' id='item' placeholder='품목'/></td>";
+                    row += "<td><input type='text' name='price' id='price' placeholder='단가'/></td>";
+                    row += "<td><input type='text' name='count' id='count' placeholder='수량'/></td>";
 //                    row += "<td><a class='ui-btn'>저장</a></td>";
                     row += "<td><span class='ui-btn'>삭제</span></td>";
                     row += "</tr>";
@@ -60,20 +60,18 @@
         </div>
 
         <button id="addTR">항목 추가</button>
-        <!--<form id="form2">-->
-        <table class="table_deco">
-            <!--<table class="table table-striped table_deco">-->
-            <thead>
-            <tr>
-                <th>item</th>
-                <th>price</th>
-                <th>count</th>
-                <!--<th>저장</th>-->
-                <th>DEL</th>
-            </tr>
-            </thead>
-        </table>
-        <!--</form>-->
+        <form id="form2">
+            <table class="table_deco">
+                <!--<table class="table table-striped table_deco">-->
+                <tr>
+                    <th>item</th>
+                    <th>price</th>
+                    <th>count</th>
+                    <!--<th>저장</th>-->
+                    <th>DEL</th>
+                </tr>
+            </table>
+        </form>
         <a class="submit_items" data-role="button">전송</a>
     </div>
     <div data-role="footer" data-position="fixed">
@@ -93,20 +91,33 @@
     <script>
         $('.submit_items').on('click', function () {
             alert('클릭됨');
-            var list_temp = $('.table_deco').tableToJSON();
-            alert(JSON.stringify(list_temp));
+//            var list_temp = $('.table_deco').tableToJSON();
+//            var list_temp = $('#form2').serialize();
+//            alert(list_temp);
+//            var send_msg = {'count': 2, 'msg': list_temp};
+            var db_info = window.localStorage.getItem('db_key');
+            var aa = {'db_infom': db_info};
+            alert(aa);
 
             $.ajax({
 //                url    : 'http://192.168.0.29:8080/guest/login',
 //                url    : 'http://203.236.209.200:8080/login/memberlogin',
-                url          : 'http://localhost:8080/login/jsontest',
+                url          : 'http://192.168.0.29:8080/login/dbtest',
+//                url    : 'http://192.168.0.29:8080/login/jsontest',
                 type         : 'post',
-//                dataType     : "jsonp",
+                dataType     : "jsonp",
 //                jsonp        : "callback",
 //                jsonpCallback: "my",
-                data         : list_temp,
+                data         : aa,
                 success      : function (data) {
-                    alert(date);
+                    alert(data.db_name);
+//                    var alist = data.result_list;
+//                    /*  alert(alist);*/
+//                    for (var i = 0; i < alist.length; i++) {
+//                        // 현재는 키가 하나임
+//                        alert(alist[i].db_info_one);
+//                    }//for
+//                    return false;
                 },
                 error        : function (request, status, error) {
                     alert('code:' + request.status + '\n' + 'message:' + request.responseText + '\n' + 'error' + error);
