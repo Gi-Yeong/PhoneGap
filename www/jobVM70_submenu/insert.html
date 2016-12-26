@@ -89,42 +89,57 @@
         </div>
     </div>
     <script>
-        $('.submit_items').on('click', function () {
+        $(document).ready(function () {
+            $('.submit_items').bind('click', function () {
+                clickEvent();
+            })
+        });
+
+        function clickEvent() {
+            $('.submit_items').unbind('click');
+
+//            $('.submit_items').on('click', function () {
             alert('클릭됨');
-//            var list_temp = $('.table_deco').tableToJSON();
-//            var list_temp = $('#form2').serialize();
-//            alert(list_temp);
-//            var send_msg = {'count': 2, 'msg': list_temp};
+            //            var list_temp = $('.table_deco').tableToJSON();
+            //            var list_temp = $('#form2').serialize();
+            //            alert(list_temp);
+            //            var send_msg = {'count': 2, 'msg': list_temp};
             var db_info = window.localStorage.getItem('db_key');
             var aa = {'db_infom': db_info};
             alert(aa);
 
             $.ajax({
-//                url    : 'http://192.168.0.29:8080/guest/login',
-//                url    : 'http://203.236.209.200:8080/login/memberlogin',
-                url          : 'http://192.168.0.29:8080/login/dbtest',
-//                url    : 'http://192.168.0.29:8080/login/jsontest',
-                type         : 'post',
-                dataType     : "jsonp",
-//                jsonp        : "callback",
-//                jsonpCallback: "my",
-                data         : aa,
-                success      : function (data) {
-                    alert(data.db_name);
-//                    var alist = data.result_list;
-//                    /*  alert(alist);*/
-//                    for (var i = 0; i < alist.length; i++) {
-//                        // 현재는 키가 하나임
-//                        alert(alist[i].db_info_one);
-//                    }//for
-//                    return false;
+                //                url    : 'http://192.168.0.29:8080/guest/login',
+                //                url    : 'http://203.236.209.200:8080/login/memberlogin',
+                url     : 'http://192.168.0.29:8080/login/dbtest',
+                //                url    : 'http://192.168.0.29:8080/login/jsontest',
+                type    : 'post',
+                dataType: "jsonp",
+                //                jsonp        : "callback",
+                //                jsonpCallback: "my",
+                data    : aa,
+                success : function (data) {
+                    //                    alert(data.db_name);
+                    console.log(data.db_name);
+                    //                    var alist = data.result_list;
+                    //                    /*  alert(alist);*/
+                    //                    for (var i = 0; i < alist.length; i++) {
+                    //                        // 현재는 키가 하나임
+                    //                        alert(alist[i].db_info_one);
+                    //                    }//for
+                    //                    return false;
                 },
-                error        : function (request, status, error) {
+                error   : function (request, status, error) {
                     alert('code:' + request.status + '\n' + 'message:' + request.responseText + '\n' + 'error' + error);
                 }
+            }).done(function () {
+                $('.submit_items').bind('click', function () {
+                   clickEvent();
+                });
             });
+//            })
+        }
 
-        })
     </script>
 </div>
 
