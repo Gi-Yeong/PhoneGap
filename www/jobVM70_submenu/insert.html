@@ -73,6 +73,8 @@
             </table>
         </form>
         <a class="submit_items" data-role="button">전송</a>
+        <a class="get_JsonP" data-role="button">JsonP 가져오기</a>
+        <a class="send_JsonArray" data-role="button">JsonArray 보내기</a>
     </div>
     <div data-role="footer" data-position="fixed">
         <div data-role="navbar">
@@ -89,6 +91,74 @@
         </div>
     </div>
     <script>
+        //        JSON Array 보내기
+        $('.send_JsonArray').on('click', function () {
+            var jArray = [];
+            //JsonArray를 위한 배열생성
+
+            var jobj = {};
+            //JsonObject를 위한 객체생성
+
+            jobj.id = "aaaa";
+            jobj.name = "admin";
+            jobj.db_info = "mysql_one";
+
+            jArray.push(jobj);
+
+            jobj = {};
+            jobj.id = "bbbb";
+            jobj.name = "root";
+            jobj.db_info = "mysql_two";
+
+            jArray.push(jobj);
+            alert(JSON.stringify(jArray));
+            var sendJson = JSON.stringify(jArray);
+
+            $.ajax({
+                url          : 'http://192.168.0.29:8080/getjson/sendmyJsonArray',
+                type         : 'post',
+                data         : {'arrayJson': sendJson},
+                dataType     : "jsonp",
+                jsonp        : "callback",
+                jsonpCallback: "my",
+                success      : function (data) {
+                    alert(data.ok);
+                },
+                error        : function (request, status, error) {
+                    alert('code:' + request.status + '\n' + 'message:' + request.responseText + '\n' + 'error' + error);
+                }
+            })
+        });
+
+
+        //        JSONP 받아오기
+        $('.get_JsonP').on('click', function () {
+            $.ajax({
+                url          : 'http://192.168.0.29:8080/getjson/getmyJsonp',
+//                type         : 'post',
+                dataType     : "jsonp",
+                jsonp        : "callback",
+                jsonpCallback: "my",
+//                data         : rdata,
+                success      : function (data) {
+                    if (data == 'fail') {
+                        alert('fail');
+                    } else {
+                        var alist = data.result_list;
+                        /*  alert(alist);*/
+                        for (var i = 0; i < alist.length; i++) {
+                            alert(alist[i].db_info + ':' + alist[i].id + ':' + alist[i].name);
+                        }//for
+                    }
+                },
+                error        : function (request, status, error) {
+                    alert('code:' + request.status + '\n' + 'message:' + request.responseText + '\n' + 'error' + error);
+                }
+            });
+        });
+
+
+        <!-- JSON으로 DB 선택하여 쓰기-->
         $(document).ready(function () {
             $('.submit_items').bind('click', function () {
                 clickEvent();
@@ -134,12 +204,11 @@
                 }
             }).done(function () {
                 $('.submit_items').bind('click', function () {
-                   clickEvent();
+                    clickEvent();
                 });
             });
 //            })
         }
-
     </script>
 </div>
 
