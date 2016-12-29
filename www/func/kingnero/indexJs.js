@@ -3,7 +3,8 @@ function ajaxLogin() {
     $.ajax({
         // url    : 'http://192.168.0.29:8080/guest/login',
         // url          : 'http://203.236.209.200:8080/login/memberlogin',
-        url          : 'http://192.168.0.29:8080/login/memberlogin',
+        // url          : 'http://192.168.0.29:8080/login/memberlogin',
+        url          : 'http://203.236.209.200:8080/inp/login/memberlogin',
         type         : 'post',
         dataType     : "jsonp",
         jsonp        : "callback",

@@ -114,10 +114,19 @@
             alert(JSON.stringify(jArray));
             var sendJson = JSON.stringify(jArray);
 
+            var vm70Array;
+            var vm71Array;
+
             $.ajax({
-                url          : 'http://192.168.0.29:8080/getjson/sendmyJsonArray',
+                url          : 'http://192.168.0.29:8080/inp/getjson/sendmyJsonArray',
                 type         : 'post',
-                data         : {'arrayJson': sendJson},
+                data         : {
+                    'db_infom'  : window.localStorage.getItem('db_key'),
+                    'arrayVm70': vm70Array,
+                    'arrayVm71': vm71Array
+                },
+//                data         : {'db_info': window.localStorage.getItem('db_key'), 'arrayJson': sendJson},
+//                data         : {'arrayJson': sendJson},
                 dataType     : "jsonp",
                 jsonp        : "callback",
                 jsonpCallback: "my",
@@ -134,7 +143,7 @@
         //        JSONP 받아오기
         $('.get_JsonP').on('click', function () {
             $.ajax({
-                url          : 'http://192.168.0.29:8080/getjson/getmyJsonp',
+                url          : 'http://192.168.0.29:8080/inp/getjson/getmyJsonp',
 //                type         : 'post',
                 dataType     : "jsonp",
                 jsonp        : "callback",
@@ -181,7 +190,7 @@
             $.ajax({
                 //                url    : 'http://192.168.0.29:8080/guest/login',
                 //                url    : 'http://203.236.209.200:8080/login/memberlogin',
-                url     : 'http://192.168.0.29:8080/login/dbtest',
+                url     : 'http://192.168.0.29:8080/inp/login/dbtest',
                 //                url    : 'http://192.168.0.29:8080/login/jsontest',
                 type    : 'post',
                 dataType: "jsonp",
