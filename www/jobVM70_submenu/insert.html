@@ -121,7 +121,7 @@
                 url          : 'http://192.168.0.29:8080/inp/getjson/sendmyJsonArray',
                 type         : 'post',
                 data         : {
-                    'db_infom'  : window.localStorage.getItem('db_key'),
+                    'db_infom' : window.localStorage.getItem('db_key'),
                     'arrayVm70': vm70Array,
                     'arrayVm71': vm71Array
                 },
@@ -142,22 +142,24 @@
 
         //        JSONP 받아오기
         $('.get_JsonP').on('click', function () {
+            var db_check = window.localStorage.getItem('db_key');
             $.ajax({
-                url          : 'http://192.168.0.29:8080/inp/getjson/getmyJsonp',
+                url          : 'http://203.236.209.200:8080/inp/iojson/getjmdata20',
 //                type         : 'post',
                 dataType     : "jsonp",
                 jsonp        : "callback",
                 jsonpCallback: "my",
-//                data         : rdata,
+                data         : {'db_infom': db_check},
                 success      : function (data) {
                     if (data == 'fail') {
                         alert('fail');
                     } else {
-                        var alist = data.result_list;
+                        var alist = data.result_list_jm20;
+                        alert('길이:' + alist.length);
                         /*  alert(alist);*/
-                        for (var i = 0; i < alist.length; i++) {
-                            alert(alist[i].db_info + ':' + alist[i].id + ':' + alist[i].name);
-                        }//for
+//                        for (var i = 0; i < alist.length; i++) {
+//                            alert(alist[i].db_info + ':' + alist[i].id + ':' + alist[i].name);
+//                        }//for
                     }
                 },
                 error        : function (request, status, error) {

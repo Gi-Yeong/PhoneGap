@@ -11,18 +11,24 @@ function ajaxLogin() {
         jsonpCallback: "my",
         data         : rdata,
         success      : function (data) {
-            if (data == 'fail') {
+            var alist = data.result_list;
+            alert(alist.length);
+            for (var i = 0; i < alist.length; i++) {
+                // 현재는 키가 하나임
+                var db_check = alist[i].db_key_from_Oracle;
+            }//for
+            if (db_check == null) {
                 $('#pw').val('');
                 $('#id').val('');
                 $('#id').focus();
                 return false; // return false를 해줘야 focus가 정상적으로 작동한다
             } else {
-                var alist = data.result_list;
                 /*  alert(alist);*/
-                for (var i = 0; i < alist.length; i++) {
-                    // 현재는 키가 하나임
-                    window.localStorage.setItem("db_key", alist[i].db_key_from_Oracle);
-                }//for
+                // for (var i = 0; i < alist.length; i++) {
+                // 현재는 키가 하나임
+                window.localStorage.setItem("db_key", db_check);
+                // window.localStorage.setItem("db_key", alist[i].db_key_from_Oracle);
+                // }//for
                 $.mobile.changePage("jobMenu.html", {transition: "flip"});
                 return false;
             }
